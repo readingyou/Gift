@@ -1,0 +1,402 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Secret ❤️</title>
+
+<style>
+body{
+    margin:0;
+    height:100vh;
+    overflow:hidden;
+    font-family:'Segoe UI';
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    background:black;
+    color:white;
+}
+
+/* screens */
+.screen{ position:absolute; text-align:center; }
+
+/* ================= INCEPTION ================= */
+
+/* fake phone */
+#fakePhone{
+    position:fixed;
+    width:100%;
+    height:100%;
+    background:#111;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    z-index:9999;
+}
+
+#noti{
+    background:#222;
+    padding:20px 30px;
+    border-radius:10px;
+    font-size:22px;
+    text-align:center;
+    animation:pulse 1.5s infinite;
+    cursor:pointer;
+}
+@keyframes pulse{50%{transform:scale(1.05);}}
+
+/* ================= ENTRY ================= */
+
+#entry{ z-index:999; }
+#tapText{
+    font-size:35px;
+    animation: glow 1.5s infinite alternate;
+}
+#arrow{
+    font-size:40px;
+    animation: bounce 1s infinite;
+}
+@keyframes bounce{50%{transform:translateY(15px);}}
+
+/* loading */
+#loading{
+    font-size:30px;
+    animation: blink 1s infinite;
+    display:none;
+}
+@keyframes blink{50%{opacity:0.3;}}
+
+/* password */
+#lock input{
+    padding:10px;
+    font-size:20px;
+    text-align:center;
+}
+
+/* ================= CINEMA ================= */
+
+#slideshow{
+    position:fixed;
+    width:100%;
+    height:100%;
+    overflow:hidden;
+}
+.slide{
+    position:absolute;
+    width:100%;
+    height:100%;
+    opacity:0;
+    animation: cinematicFade 15s infinite;
+}
+.slide img{
+    width:100%;
+    height:100%;
+    object-fit:cover;
+    filter:blur(15px);
+    animation: zoom 15s infinite, focus 15s infinite;
+}
+.caption{
+    position:absolute;
+    bottom:15%;
+    width:100%;
+    text-align:center;
+    font-size:40px;
+    opacity:0;
+    animation:textFade 15s infinite;
+}
+
+/* delays */
+.slide:nth-child(1){animation-delay:0s;}
+.slide:nth-child(2){animation-delay:5s;}
+.slide:nth-child(3){animation-delay:10s;}
+
+.slide:nth-child(1) img,.slide:nth-child(1) .caption{animation-delay:0s;}
+.slide:nth-child(2) img,.slide:nth-child(2) .caption{animation-delay:5s;}
+.slide:nth-child(3) img,.slide:nth-child(3) .caption{animation-delay:10s;}
+
+@keyframes cinematicFade{
+    0%{opacity:0}
+    10%{opacity:1}
+    30%{opacity:1}
+    40%{opacity:0}
+    100%{opacity:0}
+}
+@keyframes zoom{from{transform:scale(1)}to{transform:scale(1.1)}}
+@keyframes focus{
+    0%{filter:blur(15px)}
+    20%{filter:blur(0)}
+    80%{filter:blur(0)}
+    100%{filter:blur(15px)}
+}
+@keyframes textFade{
+    0%{opacity:0; transform:translateY(30px);}
+    20%{opacity:1; transform:translateY(0);}
+    80%{opacity:1;}
+    100%{opacity:0;}
+}
+
+/* ================= SHAYARI ================= */
+
+#text{
+    font-size:50px;
+    display:none;
+}
+
+/* ================= LOVE ================= */
+
+#love{display:none;}
+#loveText{
+    font-size:90px;
+    animation: glow 2s infinite alternate, beat 1.5s infinite;
+}
+@keyframes glow{
+    from{text-shadow:0 0 10px #fff;}
+    to{text-shadow:0 0 50px red;}
+}
+@keyframes beat{50%{transform:scale(1.2);}}
+
+/* ================= PROPOSAL ================= */
+
+#proposal{display:none;}
+button{
+    padding:15px 25px;
+    font-size:20px;
+    margin:10px;
+    cursor:pointer;
+}
+
+/* hearts */
+.heart{
+    position:absolute;
+    animation:float 5s linear infinite;
+}
+@keyframes float{
+    from{transform:translateY(100vh);}
+    to{transform:translateY(-10vh);}
+}
+
+/* ================= FINAL ================= */
+
+#finalScene{
+    display:none;
+    position:fixed;
+    width:100%;
+    height:100%;
+    background:black;
+}
+#spotlight{
+    position:absolute;
+    width:100%;
+    height:100%;
+    background: radial-gradient(circle, transparent 20%, rgba(0,0,0,0.9) 70%);
+}
+#proposalBox{
+    position:absolute;
+    top:50%;
+    left:50%;
+    transform:translate(-50%,-50%);
+    text-align:center;
+}
+#ring{
+    font-size:80px;
+    animation:ringDrop 1.5s ease;
+}
+@keyframes ringDrop{
+    0%{transform:translateY(-200px) scale(0);opacity:0;}
+    100%{transform:translateY(0) scale(1);opacity:1;}
+}
+</style>
+</head>
+
+<body>
+
+<!-- INCEPTION -->
+<div id="fakePhone">
+    <div id="noti">💌 New Message<br><small>Tap to open</small></div>
+</div>
+
+<!-- ENTRY -->
+<div id="entry" class="screen">
+    <div id="tapText">💖 Tap to Unlock Secret 💖</div>
+    <div id="arrow">👇</div>
+</div>
+
+<!-- LOADING -->
+<div id="loading" class="screen">Loading emotions...</div>
+
+<!-- PASSWORD -->
+<div id="lock" class="screen" style="display:none;">
+    <p>Enter Secret 💖</p>
+    <input type="password" id="pass">
+    <br>
+    <button onclick="check()">Unlock</button>
+</div>
+
+<!-- CINEMA -->
+<div id="slideshow" style="display:none;">
+    <div class="slide">
+        <img src="Digvijay.jpeg">
+        <div class="caption">पहली बार जब तुम्हें देखा था ❤️</div>
+    </div>
+    <div class="slide">
+        <img src="final_qr.png">
+        <div class="caption">तब समझ नहीं आया…</div>
+    </div>
+    <div class="slide">
+        <img src="hidden_qr.png">
+        <div class="caption">अब पता है… तुम ही सब कुछ हो 💖</div>
+    </div>
+</div>
+
+<!-- SHAYARI -->
+<div id="text" class="screen"></div>
+
+<!-- LOVE -->
+<div id="love" class="screen">
+    <div id="loveText">I LOVE YOU ❤️</div>
+    <div id="name"></div>
+</div>
+
+<!-- PROPOSAL -->
+<div id="proposal" class="screen">
+    <h1>Do You Love Me? 😏</h1>
+    <button onclick="yes()">YES ❤️</button>
+    <button id="noBtn" onmouseover="moveNo()">NO 😭</button>
+</div>
+
+<!-- FINAL -->
+<div id="finalScene">
+    <div id="spotlight"></div>
+    <div id="proposalBox">
+        <div id="ring">💍</div>
+        <h1>Will You Be Mine Forever? ❤️</h1>
+    </div>
+</div>
+
+<audio id="music" loop>
+<source src="my_audio.mp3.mpeg">
+</audio>
+
+<script>
+
+let unlocked=false;
+let started=false;
+let i=0;
+
+let password="BABYDOLL";
+let loverName="Meri Jaan ❤️";
+let shayari=`तुम तो कह गए कि चाँद को चाहने वाले हज़ारों हैं,
+उसे एक सितारे की कमी क्या महसूस होगी...
+
+ये तो वही बात हुई ना,
+मैंने तुम्हारे दिल से एक कोना काट के निकाल लिया हो,
+तुम्हें दर्द थोड़ी होगी...
+
+पर सच तो ये है,
+हम दोनों ही अब एक-दूसरे में ऐसे बस चुके हैं,
+कि अगर तुम थोड़े भी दूर जाओ,
+तो कमी मुझे ही नहीं, तुम्हें भी महसूस होगी... ❤️
+
+पहले जो प्यार था, वो खूबसूरत था,
+पर अब जो है, वो आदत बन चुका है...
+और आदतें यूँ ही नहीं छोड़ी जातीं...
+
+तो आज फिर से, उसी दिल से, उसी सच्चाई से…
+मैं तुम्हें एक बार फिर अपना बनाना चाहता हूँ 💍`;
+
+/* INCEPTION CLICK */
+noti.onclick=()=>{
+    fakePhone.style.display="none";
+    unlocked=true;
+};
+
+/* MAIN CLICK */
+document.body.addEventListener("click",()=>{
+    if(!unlocked) return;
+    if(started) return;
+
+    started=true;
+
+    entry.style.display="none";
+    loading.style.display="block";
+
+    setTimeout(()=>{
+        loading.style.display="none";
+        lock.style.display="block";
+    },2000);
+});
+
+/* PASSWORD */
+function check(){
+    if(pass.value===password){
+        lock.style.display="none";
+        start();
+    } else alert("Wrong दिल 😏");
+}
+
+/* START */
+function start(){
+    slideshow.style.display="block";
+    music.play();
+
+    setTimeout(()=>{
+        slideshow.style.display="none";
+        text.style.display="block";
+        type();
+    },5000);
+}
+
+/* TYPE */
+function type(){
+    if(i<shayari.length){
+        text.innerHTML+=shayari[i++];
+        setTimeout(type,40);
+    } else setTimeout(showLove,3000);
+}
+
+/* LOVE */
+function showLove(){
+    text.style.display="none";
+    love.style.display="block";
+    name.innerHTML=loverName;
+
+    setTimeout(showProposal,4000);
+
+    setInterval(()=>{
+        let h=document.createElement("div");
+        h.innerHTML="💖";
+        h.className="heart";
+        h.style.left=Math.random()*100+"vw";
+        document.body.appendChild(h);
+    },200);
+}
+
+/* PROPOSAL */
+function showProposal(){
+    love.style.display="none";
+    proposal.style.display="block";
+}
+
+function moveNo(){
+    noBtn.style.position="absolute";
+    noBtn.style.left=Math.random()*80+"vw";
+    noBtn.style.top=Math.random()*80+"vh";
+}
+
+/* YES */
+function yes(){
+    proposal.style.display="none";
+    finalScene.style.display="block";
+
+    let msg=new SpeechSynthesisUtterance("I Love You");
+    speechSynthesis.speak(msg);
+
+    setTimeout(()=>{
+        window.open("https://wa.me/?text=YES%20I%20LOVE%20YOU%20");
+    },4000);
+}
+
+</script>
+
+</body>
+</html>
