@@ -328,7 +328,7 @@ document.body.addEventListener("click",()=>{
 
 /* PASSWORD */
 function check(){
-    if(pass.value===password){
+    if(pass.value===password || pass.value=== "Babydoll" || pass.value=== "babydoll" || pass.value=== "BABYDOLL " || pass.value=== "Babydoll " || pass.value=== "babydoll "){
         lock.style.display="none";
         start();
     } else alert("Wrong Password ❌");
